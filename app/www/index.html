@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>petvida</title>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/materialize.min.css">
+    <link href="assets/css/fontawesome-pro-5.9.0-web/css/all.min.css">
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="assets/js/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/materialize.min.js"></script>
+
+    <script>
+        var db = window.localStorage;
+
+        db.setItem("Serverpetvida","http://localhost:9003");
+        
+        $(document).ready(function(){
+
+            $(".cardLogin, .splash").css({"margin-top":(window.innerHeight * 5 )/100});
+            $(".splash").css({"margin-top":(window.innerHeight*45)/100});
+
+
+            setTimeout(function(){
+                $(".splash").fadeIn();
+            },500);
+            
+            setTimeout(function(){
+                $(".splash").animate({"margin-top":"5%"},500);
+                $(".cardLogin").fadeIn();
+            },3000);
+
+
+            
+            $(".btnEntar").click(function(){
+                
+                var Email = $("#EmailLogin").val();
+                var Senha = $("#SenhaLogin").val();
+
+                if(Email == '1' && Senha == '1'){
+                    location.href = "home.html";
+                }else{
+                    $(".btnEntar").hide().before("<div class='load col s12 chip red white-text center-align'>Erro ao realizar login! </div>");
+                    setTimeout(function(){
+                        $(".load").remove();
+                        $(".btnEntar").fadeIn();
+                    }, 3000);
+                }
+                
+                
+                
+               /*  
+                $(".btnEntar").hide().before("<div class='load text-center col-lg-12 col-md-12 col-sm-12 col-xs-12 '><i class='fa fa-spin fa-spinner fa-lg'></i></div>");
+                function campoBranco(campo){
+                    $(".load").remove();
+                    $(".btnEntar").before("<div class='load col-lg-12 col-md-12 col-sm-12 col-xs-12 alert alert-danger text-center'>O campo '+campo+' não pode ser vazio! </div>");
+                    setTimeout(function(){
+                        $(".load").remove();
+                        $(".btnEntar").fadeIn();
+                    }, 3000);
+                }
+            
+                var Email = $("#EmailLogin").val();
+                var Senha = $("#SenhaLogin").val();
+            
+                if(Email == ""){
+                    campoBranco(Email);
+                }else if(Senha == ""){
+                    campoBranco(Senha);
+                }else{
+            
+                    $.ajax({
+                        url: db.getItem("Server")+"/api/login",
+                        type: "POST",
+                        data: {
+                            Email: Email,
+                            Senha: Senha
+                        },
+                    })
+                    .done(function(xhr) {
+                        console.log(xhr);
+                        if(xhr.resp == "s"){
+                            $(".load").remove();
+                            $(".btnEntar").before("<div class='load col s12 chip green white-text center-align'>Sucesso! </div>");
+                            setTimeout(function(){
+                                location.href = "home.html";
+                            }, 3000);
+                        }else{
+                            $(".load").remove();
+                            $(".btnEntar").before("<div class='load col s12 chip red white-text center-align'>Erro ao realizar login! </div>");
+                            setTimeout(function(){
+                                $(".load").remove();
+                                $(".btnEntar").fadeIn();
+                            }, 3000);
+                        }
+                    })
+                    .fail(function() {
+                        $(".load").remove();
+                        $(".btnEntar").before("<div class='load col s12 chip red white-text center-align'>Erro ao realizar login! </div>");
+                        setTimeout(function(){
+                            $(".load").remove();
+                            $(".btnEntar").fadeIn();
+                        }, 3000);
+                    });
+                } */
+            });
+        
+        });
+    </script>
+    <style>
+        .cursor{
+            cursor:pointer;
+        }
+        .round-50{
+            border-radius: 50px;
+        }
+        .padding0{
+            padding:0px !important;
+        }
+        .underline{
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="container" style="max-width:none; width:100vw; height:100vh; background: linear-gradient(to bottom, #6dd264, #afeeaa); position:fixed;">
+        <div class="row">
+
+            <div class="splash" style="display: none">
+                <img src="assets/img/logo.png" class="col s6 offset-s3" />
+            </div>
+
+
+            <div class="col s10 offset-s1 cardLogin card" style="display: none">
+                <div class="card-content">
+                    
+                    <h5 class="col s12 center-align">Seja bem vindo</h5>
+                    <div class="col s12">&nbsp;</div>
+                      <div class="input-field col s12 l6">
+                        <input type="text" id="EmailLogin" class="validate">
+                        <label for="EmailLogin">Usuário</label>
+                      </div>
+                      <div class="input-field col s12 l6">
+                        <input type="text" id="SenhaLogin" class="validate">
+                        <label for="SenhaLogin">Senha</label>
+                      </div>
+                      
+
+                    <div class="btn green btnEntar col s12">Entrar</div>
+                    <div class="col s12">&nbsp;</div>
+                    <div class="col s12 center-align cursor padding0 underline">Esqueci minha senha</div>
+                    <div class="col s12">&nbsp;</div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    
+</body>
+</html>
